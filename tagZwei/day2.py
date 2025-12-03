@@ -1,0 +1,30 @@
+def range_to_array(range_str):
+    start, end = map(int, range_str.split('-'))
+    return range(start, end + 1)
+
+def process_and_handle_ranges(input):
+    solution = 0
+    with open(input, 'r') as file:
+        content = file.read().strip()
+        ranges = content.split(',')
+
+        for range_str in ranges:
+            number_range = range_to_array(range_str.strip())
+            for number in number_range:
+                num_str = str(number)
+                num_length = len(num_str)
+
+                if num_length % 2 == 0:
+                    half_length = num_length // 2
+                    first_half = num_str[:half_length]
+                    second_half = num_str[half_length:]
+
+                    if first_half == second_half:
+                        old_solution = solution
+                        solution += number
+                        print("Neue Zahl gefunden: {number}")
+                        print("Rechnung: alte Lösung = {old_solution} + Zahl = {solution}")
+
+    print("Die finale Lösung ist: {solution}")
+
+process_and_handle_ranges("input.txt")
