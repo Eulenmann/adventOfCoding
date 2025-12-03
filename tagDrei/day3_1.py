@@ -1,4 +1,4 @@
-def process_day3(filename):
+def day3(filename):
     maxVoltage = 0
 
     with open(filename, "r") as file:
@@ -6,43 +6,46 @@ def process_day3(filename):
             line = line.strip()
 
             # Platzhalter für größte und zweitgrößte Ziffer
-            best_digit = -1
-            best_index = -1
+            hoechste_ziffer = 0
+            hoechste_ziffer_index = 0
 
-            second_digit = -1
-            second_index = -1
-
+            zweithoechste_ziffer = 0
+            zweithoechste_ziffer_index = 0
+            letzter_index = len(str(line))
+            print(letzter_index)
             # Einmal über die Zeile iterieren (O(n))
             for index, char in enumerate(line):
-                digit = int(char)
+                ziffer = int(char)
 
                 # Größte Ziffer gefunden?
-                if digit > best_digit:
-                    # alter best wird second
-                    second_digit = best_digit
-                    second_index = best_index
+                if ziffer > hoechste_ziffer:
+                    print("Ziffer", ziffer ,"ist höher als", hoechste_ziffer)
+                    if index == letzter_index-1:
+                       zweithoechste_ziffer = ziffer
+                       break
+                    # second wird auf 0 gesetzt
+                    zweithoechste_ziffer = 0
+                    zweithoechste_ziffer_index = 0
+                    print("Zweite Ziffer", zweithoechste_ziffer)
 
                     # neuer best
-                    best_digit = digit
-                    best_index = index
-
+                    hoechste_ziffer = ziffer
+                    hoechste_ziffer_index = index
+                    print("Neue höchste", hoechste_ziffer,"\n")
                 # zweitgrößte Ziffer gefunden?
-                elif digit > second_digit:
-                    second_digit = digit
-                    second_index = index
-
-            # Zweistellige Zahl in richtiger Reihenfolge bilden
-            if best_index < second_index:
-                double_digit = best_digit * 10 + second_digit
-            else:
-                double_digit = second_digit * 10 + best_digit
-
+                elif ziffer > zweithoechste_ziffer:
+                    zweithoechste_ziffer = ziffer
+                    zweithoechste_ziffer_index = index
+                    print("Neue Zweite", zweithoechste_ziffer)
+            # Zweistellige Zahl bilden
+            doppel_ziffer = hoechste_ziffer * 10 + zweithoechste_ziffer
+            print("Voltage der Zeile:", doppel_ziffer)
             # Aufaddieren
-            maxVoltage += double_digit
+            maxVoltage += doppel_ziffer
 
     return maxVoltage
 
 
 # Beispielaufruf:
-result = process_day3("input_tag3.txt")
+result = day3("inputTag3.txt")
 print("Gesamt-Maximalspannung:", result)
