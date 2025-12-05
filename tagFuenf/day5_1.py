@@ -1,4 +1,6 @@
 fresh_unset_list = []
+ingredients_to_check_list = []
+
 def day5(ingredients_input, range_input):
     fresh_ingredients = create_fresh_ingredient_list(range_input)
     ingredients_to_check_list = create_ingredients_to_check_list(ingredients_input)
@@ -29,7 +31,7 @@ def create_fresh_ingredient_list(range_input):
             print(fresh_ingredients)
     return fresh_ingredients
 
-def create_ingredients_to_check_list(ingredients_input, ingredients_to_check_list=[]):
+def create_ingredients_to_check_list(ingredients_input):
     with open(ingredients_input, "r") as ingredientsfile:
         for line in ingredientsfile:
             line = line.strip()
