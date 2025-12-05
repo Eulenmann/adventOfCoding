@@ -15,8 +15,6 @@ def process_and_handle_ranges(filename):
                 num_length = len(num_str)
                 check_if_even_and_left_equals_right(num_length,num_str)
 
-
-
 def check_if_even_and_left_equals_right(num_length,num_str):
                 if num_length % 2 == 0:
                     half_length = num_length // 2
